@@ -44,7 +44,6 @@ var urlinfo = require('url').parse(config.host);
 config.hostname = urlinfo.hostname || config.host;
 
 var app = express();
-
 // configuration in all env
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');

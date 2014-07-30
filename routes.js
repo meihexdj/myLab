@@ -30,7 +30,6 @@ var config = require('./config');
 
 module.exports = function (app) {
   // home page
-
   app.get('/',site.index);
   app.get('/outTopic', site.outTopic);
 
