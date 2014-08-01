@@ -12,6 +12,7 @@ var sign = require('./controllers/sign');
 var site = require('./controllers/site');
 var user = require('./controllers/user');
 var member =require('./controllers/member');
+var notice =require('./controllers/notice');
 var message = require('./controllers/message');
 var topic = require('./controllers/topic');
 var reply = require('./controllers/reply');
@@ -35,6 +36,7 @@ module.exports = function (app) {
   app.get('/outTopic', site.outTopic);
 
   app.get('/member',member.index);
+
   // sign up, login, logout
   if (config.allow_sign_up) {
     app.get('/signup', sign.showSignup);
@@ -52,7 +54,8 @@ module.exports = function (app) {
   app.post('/search_pass', sign.updateSearchPass);
   app.get('/reset_pass', sign.reset_pass);
   app.post('/reset_pass', sign.update_pass);
-
+  //notice
+  app.get('/notice',notice.index);
   // user
   app.get('/user/:name', user.index);
   app.get('/setting', user.showSetting);
@@ -109,6 +112,7 @@ module.exports = function (app) {
   // static
   app.get('/about', assets.about);
   app.get('/faq', assets.faq);
+  app.get('/labPhoto',assets.labPhoto);
 
   //rss
   app.get('/rss', rss.index);
