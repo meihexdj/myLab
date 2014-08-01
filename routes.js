@@ -11,6 +11,7 @@
 var sign = require('./controllers/sign');
 var site = require('./controllers/site');
 var user = require('./controllers/user');
+var member =require('./controllers/member');
 var message = require('./controllers/message');
 var topic = require('./controllers/topic');
 var reply = require('./controllers/reply');
@@ -33,6 +34,7 @@ module.exports = function (app) {
   app.get('/',site.index);
   app.get('/outTopic', site.outTopic);
 
+  app.get('/member',member.index);
   // sign up, login, logout
   if (config.allow_sign_up) {
     app.get('/signup', sign.showSignup);

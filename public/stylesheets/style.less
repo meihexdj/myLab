@@ -70,10 +70,7 @@ body {
 #footer {
   height: 160px;
   clear: both;
-  position: absolute;
-  width:100%;
-  left:0;
-  bottom:0;
+  position: relative;
   background: white;
   box-shadow: 0 -1px 0px rgba(168, 168, 168, 0.33);
 }
@@ -856,4 +853,9 @@ textarea.editor {
 .reply_content table tr th>:last-child,
 .reply_content table tr td>:last-child {
   margin-bottom:0;
+}
+//一些特殊地方的修正
+//TODO 这里必须用clear:left否则ul的会出问题，不知道什么原因
+#gradeTab:after{
+  clear:left;
 }
