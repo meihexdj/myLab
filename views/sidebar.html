@@ -11,19 +11,7 @@
           </ul>
       </div>
   </div>
-  <div class="panel">
-        <div class="header">
-            <span clas="col_fade">公告</span>
-        </div>
-        <div class="inner">
-            <p>
-                本周打扫卫生人员：高金标，孟婷婷
-            </p>
-        </div>
-        <div class="panel-footer">
-            <a href="/notice">更多</a>
-        </div>
-  </div>
+
 
   <div class='panel'>
     <% if (typeof(user) !== 'undefined' || typeof(current_user) !== 'undefined') { %>
@@ -93,5 +81,21 @@
     </div>
   </div>
   <% } %>
+    <% if (typeof(tags) !== 'undefined'){ %>
+    <div class=panel>
+        <div class='header'>
+            <!-- <img src='<%- config.site_static_host %>/public/images/tag_icon&16.png' title='标签'/> -->
+            <!-- CNode社区宣传通告 -->
+            <span class="index_notify">所有标签</span>
+        </div>
+        <div class='inner'>
+            <% if( tags.length > 0 ){ %>
+            <%- partial('tag/tag_in_abstract',{collection:tags,as:'tag'}) %>
+            <% } else { %>
+            无标签
+            <% } %>
+        </div>
+    </div>
+    <% } %>
 
 </div>

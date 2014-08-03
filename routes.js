@@ -15,6 +15,7 @@ var member =require('./controllers/member');
 var notice =require('./controllers/notice');
 var message = require('./controllers/message');
 var topic = require('./controllers/topic');
+var tag = require('./controllers/tag');
 var reply = require('./controllers/reply');
 var rss = require('./controllers/rss');
 var upload = require('./controllers/upload');
@@ -33,6 +34,7 @@ var config = require('./config');
 module.exports = function (app) {
   // home page
   app.get('/',site.index);
+  app.get('/home',site.index);
   app.get('/outTopic', site.outTopic);
 
   app.get('/member',member.index);
@@ -56,7 +58,20 @@ module.exports = function (app) {
   app.post('/reset_pass', sign.update_pass);
   //notice
   app.get('/notice',notice.index);
-  // user
+
+    // tag
+
+    app.get('/tags/edit', tag.edit_tags);
+    app.get('/tag/:name', tag.list_topic);
+    // 编辑界面
+    app.get('/tag/:name/edit', auth.adminRequired, tag.edit);
+    app.get('/tag/:name/delete', auth.adminRequired, tag.delete);
+    app.post('/tag/add', auth.adminRequired, tag.add);
+    // 更新
+    app.post('/tag/:id', auth.adminRequired, tag.update);
+    app.post('/tag/collect', tag.collect);
+
+    // user
   app.get('/user/:name', user.index);
   app.get('/setting', user.showSetting);
   app.post('/setting', user.setting);

@@ -109,6 +109,6 @@ exports.newAndSave = function (name, loginname, pass, email, avatar_url, active,
   user.pass = pass;
   user.email = email;
   user.avatar = avatar_url;
-  user.active = false;
+  user.active = true;
   user.save(callback);
 };

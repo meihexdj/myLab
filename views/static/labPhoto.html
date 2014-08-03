@@ -1,4 +1,33 @@
 <%- partial('../sidebar') %>
+<style type="text/css">
+    .container-fluid {
+        padding: 20px;
+    }
+    .box {
+        margin-bottom: 20px;
+        float: left;
+        width: 220px;
+    }
+    .box img {
+        max-width: 100%
+    }
+
+</style>
+
+<script type="text/javascript">
+$(function(){
+         var $container = $('#masonry');
+         $container.imagesLoaded( function(){
+             $container.masonry({
+             itemSelector : '.box',
+             gutterWidth : 20,
+             isAnimated: true
+         });
+     });
+});
+
+
+</script>
 <div id='content'>
     <div class='panel'>
         <div class='header'>
@@ -8,7 +37,14 @@
             </ul>
         </div>
         <div class="inner">
+            <div id="masonry" class="container-fluid">
+                <div class="box"><img src="public/images/1.jpg"></div>
+                <div class="box"><img src="public/images/2.jpg"></div>
+                <div class="box"><img src="public/images/3.jpg"></div>
+                <div class="box"><img src="public/images/4.jpg"></div>
+                <div class="box"><img src="public/images/5.jpg"></div>
 
+            </div>
         </div>
     </div>
 </div>

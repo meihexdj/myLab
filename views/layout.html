@@ -39,7 +39,8 @@
       .js('/public/libs/jquery.atwho.js')
       .js('/public/javascripts/main.js')
       .js('/public/javascripts/responsive.js')
-      .js('/public/libs/masonry.js')
+      .js('/public/libs/imagesloaded.pkgd.js')
+      .js('/public/libs/masonry.pkgd.js')
       .done(assets, config.site_static_host, config.mini_assets)
     %>
     <% if (typeof(topic) !== 'undefined') { %>
@@ -70,7 +71,6 @@
                   </span> 未读消息</a>
               </li>
             <% } %>
-            <li><a href='https://github.com/cnodejs/nodeclub/wiki/'>Wiki</a></li>
             <%
             var site_navs = config.site_navs || [];
             for (var i = 0, l = site_navs.length; i < l; i++) {

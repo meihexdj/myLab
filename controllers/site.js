@@ -11,6 +11,7 @@
 
 var User = require('../proxy').User;
 var Topic = require('../proxy').Topic;
+var Tag = require('../proxy').Tag;
 var config = require('../config').config;
 var EventProxy = require('eventproxy');
 var mcache = require('memory-cache');
@@ -36,15 +37,16 @@ exports.outTopic = function (req, res, next) {
   page = page > 0 ? page : 1;
   var limit = config.list_topic_count;
 
-  var proxy = EventProxy.create('topics', 'tops', 'no_reply_topics', 'pages',
-    function (topics, tops, no_reply_topics, pages) {
+  var proxy = EventProxy.create('topics', 'tops', 'no_reply_topics', 'pages','tags',
+    function (topics, tops, no_reply_topics, pages, tags) {
       res.render('index', {
         topics: topics,
         current_page: page,
         list_topic_count: limit,
         tops: tops,
         no_reply_topics: no_reply_topics,
-        pages: pages
+        pages: pages,
+        tags:tags
       });
     });
   proxy.fail(next);
@@ -93,5 +95,14 @@ exports.outTopic = function (req, res, next) {
       mcache.put('pages', pages, 1000 * 60 * 1);
       proxy.emit('pages', pages);
     }));
+  }
+  //取标签
+  if(mcache.get('tags')){
+    proxy.emit('tags',mcache.get('tags'));
+  }else{
+      Tag.getAllTags(proxy.done('tags',function(tags){
+          mcache.put('tags',tags,1000 * 60 * 1);
+          return tags;
+      }));
   }
 };

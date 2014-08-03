@@ -33,7 +33,19 @@
           <textarea autofocus class='span9' id='title' name='title' rows='1'
             placeholder="标题字数 10 字以上"
             ><%= typeof(title) !== 'undefined' && title || '' %></textarea>
-
+            <label class="bold">标签:</label>
+            <% for (var i =0,length=tags.length;i<length;i++){
+                  var tag=tags[i];
+                  if(tag.is_selected){ %>
+                   <span class='tag_selectable tag_select' tag_id='<%= tag._id %>'>
+	                  <%= tag.name %>
+                    </span>
+                     <% }else{ %>
+                <span class='tag_selectable' tag_id='<%= tag._id %>'>
+	                 <%= tag.name %>
+                </span>
+            <% } %>
+            <% }%>
           <div class='markdown_editor in_editor'>
             <div class='markdown_in_editor'>
               <textarea class='editor' name='t_content' rows='20'
@@ -70,8 +82,25 @@
 %>
 <script>
 $(function () {
-  $('#submit_btn').click(function () {
-    $(this).button('loading');
-  });
+    /*button是什么方法？
+    $('#submit_btn').click(function () {
+        $(this).button('loading');
+    });
+    */
+    $('.tag_selectable').click(function(){
+        $(this).toggleClass('tag_select');
+    });
+
+    $('#submit_btn').click(function(){
+        var values=[];
+        $('.tag_selectable').each(function(){
+            if($(this).hasClass('tag_select')){
+                values.push($(this).attr('tag_id'));
+            }
+        });
+        $('#topic_tags').val(values);
+        $('#create_topic_form').submit();
+    });
+
 });
 </script>

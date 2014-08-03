@@ -73,10 +73,8 @@ exports.signup = function (req, res, next) {
         return next(err);
       }
       // 发送激活邮件
-      mail.sendActiveMail(email, md5(email + config.session_secret), name);
-      res.render('sign/signup', {
-        success: '欢迎加入 ' + config.name + '！我们已给您的注册邮箱发送了一封邮件，请点击里面的链接来激活您的帐号。'
-      });
+      //mail.sendActiveMail(email, md5(email + config.session_secret), name);
+      res.render('sign/signup',{success: '欢迎加入 ' + config.name + '！'});
     });
   });
 };
