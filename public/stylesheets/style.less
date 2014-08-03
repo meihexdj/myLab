@@ -1,5 +1,6 @@
 /* base */
 body {
+  padding-top:70px;
   background-color: #e5e5e5;
 }
 
@@ -616,9 +617,8 @@ textarea#title {
   margin-bottom: 0px;
   z-index: 9;
   width: 100%;
-  position: relative;
   box-shadow: 0px 0px 1px hsl(0, 0%, 40%);
-  background: white;
+  background-color: hsl(182, 72%, 49%);
   font-size: 13px;
 }
 .navbar-inner {
@@ -641,10 +641,15 @@ textarea#title {
 }
 .navbar .navbar-search {
   margin-top: 6px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
 }
 .navbar .search-query {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
   box-shadow: 0px 0px 4px hsl(0, 12%, 76%);
   background: white url('../images/search.png') no-repeat 4px 4px;
   padding: 4px 5px 4px 22px;
@@ -854,12 +859,63 @@ textarea.editor {
 .reply_content table tr td>:last-child {
   margin-bottom:0;
 }
+
+//我的修正
 //notice
 .notice-cell{
 
 }
+//form
+.form-horizontal .control-group {
+  margin-bottom: 20px;
+}
+.form-horizontal .control-label {
+  float: left;
+  width: 160px;
+  padding-top: 5px;
+  text-align: right;
+  cursor: pointer;
+}
+.form-horizontal .controls {
+  margin-left: 180px;
+}
+.form-horizontal .form-actions {
+  padding-left: 180px;
+}
+.form-actions {
+  padding: 19px 20px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-top: 0;
+}
+//
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus{
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
 //一些特殊地方的修正
 //TODO 这里必须用clear:left否则ul的会出问题，不知道什么原因
-#gradeTab:after{
-  clear:left;
+#gradeTab:after {
+  clear: left;
 }

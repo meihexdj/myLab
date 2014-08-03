@@ -29,7 +29,7 @@ setInterval(function () {
 }, 1000 * 5); // 五秒更新一次
 // END 主页的缓存工作
 exports.index = function(req,res){
-    res.render('main',{});
+    res.render('main',{"main":"layoutMain"});
 };
 
 exports.outTopic = function (req, res, next) {
