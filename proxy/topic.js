@@ -151,7 +151,6 @@ exports.getFullTopic = function (id, callback) {
             }
             Tag.getTagsByIds(tags_ids, proxy.done('tags'));
         }));
-        console.log(topic.author_id);
         User.getUserById(topic.author_id, proxy.done(function (author) {
             if (!author) {
                 proxy.unbind();

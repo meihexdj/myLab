@@ -59,7 +59,6 @@ exports.index = function (req, res, next) {
 
     topic.author = author;
     topic.replies = replies;
-    console.log(author);
     if (!req.session.user) {
       ep.emit('topic', topic);
       ep.emit('relation', null);
