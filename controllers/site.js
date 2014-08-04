@@ -28,8 +28,53 @@ setInterval(function () {
   });
 }, 1000 * 5); // 五秒更新一次
 // END 主页的缓存工作
-exports.index = function(req,res){
-    res.render('main',{"main":"layoutMain"});
+exports.index = function(req,res,next){
+    var proxy = EventProxy.create('tops', 'no_reply_topics', 'tags',
+        function (tops, no_reply_topics, tags) {
+            res.render('main', {
+                main:'layoutMain',
+                tops: tops,
+                no_reply_topics: no_reply_topics,
+                tags:tags
+            });
+        });
+    proxy.fail(next);
+
+    // 取排行榜上的用户
+    if (mcache.get('tops')) {
+        proxy.emit('tops', mcache.get('tops'));
+    } else {
+        User.getUsersByQuery(
+            {'$or': [{is_block: {'$exists': false}}, {is_block: false}]},
+            { limit: 10, sort: [ [ 'score', 'desc' ] ] },
+            proxy.done('tops', function (tops) {
+                mcache.put('tops', tops, 1000 * 60 * 1);
+                return tops;
+            })
+        );
+    }
+    // 取0回复的主题
+    if (mcache.get('no_reply_topics')) {
+        proxy.emit('no_reply_topics', mcache.get('no_reply_topics'));
+    } else {
+        Topic.getTopicsByQuery(
+            { reply_count: 0 },
+            { limit: 5, sort: [ [ 'create_at', 'desc' ] ] },
+            proxy.done('no_reply_topics', function (no_reply_topics) {
+                mcache.put('no_reply_topics', no_reply_topics, 1000 * 60 * 1);
+                return no_reply_topics;
+            }));
+    }
+
+    //取标签
+    if(mcache.get('tags')){
+        proxy.emit('tags',mcache.get('tags'));
+    }else{
+        Tag.getAllTags(proxy.done('tags',function(tags){
+            mcache.put('tags',tags,1000 * 60 * 1);
+            return tags;
+        }));
+    }
 };
 
 exports.outTopic = function (req, res, next) {

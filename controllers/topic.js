@@ -44,14 +44,14 @@ exports.index = function (req, res, next) {
 
   ep.fail(next);
 
-  Topic.getFullTopic(topic_id, ep.done(function (message, topic, author, replies) {
+  Topic.getFullTopic(topic_id, ep.done(function (message, topic, tags, author, replies) {
     if (message) {
       ep.unbind();
       return res.render('notify/notify', { error: message });
     }
 
     topic.visit_count += 1;
-    topic.save();
+    topic.save();//这里为什么可以用save?
 
     // format date
     topic.friendly_create_at = Util.format_date(topic.create_at, true);
@@ -59,7 +59,7 @@ exports.index = function (req, res, next) {
 
     topic.author = author;
     topic.replies = replies;
-
+    console.log(author);
     if (!req.session.user) {
       ep.emit('topic', topic);
       ep.emit('relation', null);
