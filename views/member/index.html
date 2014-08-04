@@ -1,10 +1,6 @@
 <%- partial('../sidebar') %>
-<link href="/public/stylesheets/bootstrap-lightbox.css" rel="stylesheet"/>
-<script type="text/javascript" src="/public/libs/bootstrap-lightbox.js"></script>
+
 <script type="text/javascript">
-    $(function(){
-        $('#demoLightbox').lightbox();
-    });
 </script>
 
 <div id="content">
@@ -27,7 +23,18 @@
             <div class="tab-pane fade in active" id="teacher">
             </div>
             <div class="tab-pane fade"  id="2008">
-
+                <ul class="nav nav-pills">
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                        <img src="/public/images/0.jpg">
+                        <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li ><a href="javascript:void(0)"><img src="/public/images/1.jpg"></a></li>
+                    <li ><a href="javascript:void(0)"><img src="/public/images/2.jpg"></a></li>
+                    <li ><a href="javascript:void(0)"><img src="/public/images/3.jpg"></a></li>
+                    <li ><a href="javascript:void(0)"><img src="/public/images/4.jpg"></a></li>
+                </ul>
             </div>
             <div class="tab-pane fade"  id="2009">
 
@@ -38,5 +45,42 @@
         </div>
 
     </div>
+    <div class="modal fade" id="xu" data-modal=" ">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">许会元信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="text-align: center;">
+                        <img src="/public/images/4.jpg">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" style="text-align: right;">姓名：</div>
+                        <div class="col-sm-9">许会元</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" style="text-align: right;">性别：</div>
+                        <div class="col-sm-9">男</div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-sm-3" style="text-align: right;">工作：</div>
+                        <div class="col-sm-9"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3" style="text-align: right;">联系电话：</div>
+                        <div class="col-sm-9">15958198067</div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
