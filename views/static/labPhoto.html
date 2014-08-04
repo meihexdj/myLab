@@ -1,19 +1,23 @@
 <%- partial('../sidebar') %>
+<link href="/public/stylesheets/lightbox.css" rel="stylesheet"/>
 <style type="text/css">
     .container-fluid {
         padding: 20px;
     }
     .box {
-        margin-bottom: 20px;
+        margin: 0 20px 20px 20px;
         float: left;
-        width: 220px;
+        width:300px;
     }
     .box img {
         max-width: 100%
     }
+    .box:hover{
+        border:2px solid #2BD53F;
+    }
 
 </style>
-
+<script type="text/javascript" src="/public/libs/lightbox.js"></script>
 <script type="text/javascript">
 $(function(){
          var $container = $('#masonry');
@@ -38,13 +42,12 @@ $(function(){
         </div>
         <div class="inner">
             <div id="masonry" class="container-fluid">
-                <div class="box"><img src="public/images/1.jpg"></div>
-                <div class="box"><img src="public/images/2.jpg"></div>
-                <div class="box"><img src="public/images/3.jpg"></div>
-                <div class="box"><img src="public/images/4.jpg"></div>
-                <div class="box"><img src="public/images/5.jpg"></div>
-
-            </div>
+                <div class="box"><a href="public/images/myLab/desc.jpg" data-lightbox="group1" data-title="123"><img src="public/images/myLab/desc.jpg"></a></div>
+                <div class="box"><a href="public/images/myLab/3-1-01.png" data-lightbox="group1" data-title="123"><img src="public/images/myLab/3-1-01.png"></a></div>
+                <div class="box"><a href="public/images/3.jpg" data-lightbox="group1" data-title="123"><img src="public/images/3.jpg"></a></div>
+                <div class="box"><a href="public/images/4.jpg" data-lightbox="group1" data-title="123"><img src="public/images/4.jpg"></a></div>
+                <div class="box"><a href="public/images/5.jpg" data-lightbox="group1" data-title="123"><img src="public/images/5.jpg"></a></div>
+             </div>
         </div>
     </div>
 </div>
