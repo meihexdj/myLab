@@ -45,7 +45,22 @@
       </div>
     </div>
   <% } %>
-
+    <% if (typeof(hot_topics) !=='undefined') { %>
+    <div class='panel'>
+        <div class='header'>
+            <span class='col_fade'>热门话题</span>
+        </div>
+        <div class='inner'>
+            <% if (hot_topics.length >0) { %>
+            <ul class='unstyled'>
+                <%- partial('topic/small', { collection: hot_topics, as: 'topic' }) %>
+            </ul>
+            <% } else { %>
+            <p>无</p>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
   <% if (typeof(no_reply_topics) !== 'undefined') { %>
   <div class='panel'>
     <div class='header'>
@@ -62,6 +77,36 @@
     </div>
   </div>
   <% } %>
+    <% if (typeof(hot_tags) !== 'undefined') { %>
+    <div class='panel'>
+        <div class='header'>
+            <span class='col_fade'>热门标签</span>
+        </div>
+        <div class='inner'>
+            <% if (hot_tags.length > 0) { %>
+            <%- partial('tag/tag_with_count', { collection: hot_tags, as: 'tag' }) %>
+            <% } else { %>
+            <p>无</p>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
+    <% if (typeof(tags) !== 'undefined'){ %>
+    <div class=panel>
+        <div class='header'>
+            <!-- <img src='<%- config.site_static_host %>/public/images/tag_icon&16.png' title='标签'/> -->
+            <!-- CNode社区宣传通告 -->
+            <span class="index_notify">所有标签</span>
+        </div>
+        <div class='inner'>
+            <% if( tags.length > 0 ){ %>
+            <%- partial('tag/tag_in_abstract',{collection:tags,as:'tag'}) %>
+            <% } else { %>
+            无标签
+            <% } %>
+        </div>
+    </div>
+    <% } %>
 
   <% if (typeof(tops) !== 'undefined') { %>
   <div class='panel'>
@@ -81,21 +126,6 @@
     </div>
   </div>
   <% } %>
-    <% if (typeof(tags) !== 'undefined'){ %>
-    <div class=panel>
-        <div class='header'>
-            <!-- <img src='<%- config.site_static_host %>/public/images/tag_icon&16.png' title='标签'/> -->
-            <!-- CNode社区宣传通告 -->
-            <span class="index_notify">所有标签</span>
-        </div>
-        <div class='inner'>
-            <% if( tags.length > 0 ){ %>
-            <%- partial('tag/tag_in_abstract',{collection:tags,as:'tag'}) %>
-            <% } else { %>
-            无标签
-            <% } %>
-        </div>
-    </div>
-    <% } %>
+
 
 </div>

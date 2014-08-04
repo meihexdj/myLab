@@ -1,4 +1,11 @@
 <%- partial('../sidebar') %>
+<link href="/public/stylesheets/bootstrap-lightbox.css" rel="stylesheet"/>
+<script type="text/javascript" src="/public/libs/bootstrap-lightbox.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#demoLightbox').lightbox();
+    });
+</script>
 
 <div id="content">
     <div class='panel'>
@@ -18,20 +25,9 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane fade in active" id="teacher">
-                <div class="block">
-                    <div class="img">
-                        <img src="/public/images/0.jpg"/>
-                    </div>
-                </div>
             </div>
             <div class="tab-pane fade"  id="2008">
-                <div class="block">
-                    <div class="img">
-                        <img src="/public/images/0.jpg"/>
-                    </div>
 
-
-                </div>
             </div>
             <div class="tab-pane fade"  id="2009">
 
@@ -40,6 +36,7 @@
 
             </div>
         </div>
+
     </div>
 
 </div>

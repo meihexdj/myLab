@@ -29,13 +29,15 @@ setInterval(function () {
 }, 1000 * 5); // 五秒更新一次
 // END 主页的缓存工作
 exports.index = function(req,res,next){
-    var proxy = EventProxy.create('tops', 'no_reply_topics', 'tags',
-        function (tops, no_reply_topics, tags) {
+    var proxy = EventProxy.create('tops', 'no_reply_topics', 'tags','hot_tags','hot_topics',
+        function (tops, no_reply_topics, tags,hot_tags,hot_topics) {
             res.render('main', {
                 main:'layoutMain',
                 tops: tops,
                 no_reply_topics: no_reply_topics,
-                tags:tags
+                tags:tags,
+                hot_tags:hot_tags,
+                hot_topics:hot_topics
             });
         });
     proxy.fail(next);
@@ -53,6 +55,17 @@ exports.index = function(req,res,next){
             })
         );
     }
+    // 取热门主题
+    if (mcache.get('hot_topics')) {
+        proxy.emit('hot_topics', mcache.get('hot_topics'));
+    } else {
+        Topic.getTopicsByQuery({},
+            { limit: 5, sort: [ [ 'visit_count', 'desc' ] ] },
+            proxy.done('hot_topics'),function(hot_topics){
+                mcache.put('hot_topics',hot_topics);
+                return hot_topics;
+            });
+    }
     // 取0回复的主题
     if (mcache.get('no_reply_topics')) {
         proxy.emit('no_reply_topics', mcache.get('no_reply_topics'));
@@ -69,9 +82,17 @@ exports.index = function(req,res,next){
     //取标签
     if(mcache.get('tags')){
         proxy.emit('tags',mcache.get('tags'));
+        var hot_tags = mcache.get('tags').sort(function (tag_a, tag_b) {
+            return tag_b.topic_count - tag_a.topic_count;
+        }).slice(0,5);
+        proxy.emit('hot_tags',hot_tags);
     }else{
         Tag.getAllTags(proxy.done('tags',function(tags){
             mcache.put('tags',tags,1000 * 60 * 1);
+            var hot_tags = tags.sort(function (tag_a, tag_b) {
+                return tag_b.topic_count - tag_a.topic_count;
+            }).slice(0,5);
+            proxy.emit('hot_tags',hot_tags);
             return tags;
         }));
     }
@@ -82,8 +103,8 @@ exports.outTopic = function (req, res, next) {
   page = page > 0 ? page : 1;
   var limit = config.list_topic_count;
 
-  var proxy = EventProxy.create('topics', 'tops', 'no_reply_topics', 'pages','tags',
-    function (topics, tops, no_reply_topics, pages, tags) {
+  var proxy = EventProxy.create('topics', 'tops', 'no_reply_topics', 'pages','tags','hot_tags','hot_topics',
+    function (topics, tops, no_reply_topics, pages, tags,hot_tags,hot_topics) {
       res.render('index', {
         topics: topics,
         current_page: page,
@@ -91,7 +112,9 @@ exports.outTopic = function (req, res, next) {
         tops: tops,
         no_reply_topics: no_reply_topics,
         pages: pages,
-        tags:tags
+        tags:tags,
+        hot_tags:hot_tags,
+        hot_topics:hot_topics
       });
     });
   proxy.fail(next);
@@ -119,6 +142,17 @@ exports.outTopic = function (req, res, next) {
       })
     );
   }
+    // 取热门主题
+    if (mcache.get('hot_topics')) {
+        proxy.emit('hot_topics', mcache.get('hot_topics'));
+    } else {
+        Topic.getTopicsByQuery({},
+            { limit: 5, sort: [ [ 'visit_count', 'desc' ] ] },
+            proxy.done('hot_topics'),function(hot_topics){
+                mcache.put('hot_topics',hot_topics);
+                return hot_topics;
+            });
+    }
   // 取0回复的主题
   if (mcache.get('no_reply_topics')) {
     proxy.emit('no_reply_topics', mcache.get('no_reply_topics'));
@@ -144,10 +178,21 @@ exports.outTopic = function (req, res, next) {
   //取标签
   if(mcache.get('tags')){
     proxy.emit('tags',mcache.get('tags'));
+      var hot_tags = mcache.get('tags').sort(function (tag_a, tag_b) {
+          return tag_b.topic_count - tag_a.topic_count;
+      }).slice(0,5);
+      proxy.emit('hot_tags',hot_tags);
   }else{
       Tag.getAllTags(proxy.done('tags',function(tags){
           mcache.put('tags',tags,1000 * 60 * 1);
+          var hot_tags = tags.sort(function (tag_a, tag_b) {
+              return tag_b.topic_count - tag_a.topic_count;
+          }).slice(0,5);
+          proxy.emit('hot_tags',hot_tags);
           return tags;
       }));
   }
+
+    // 计算最热标签
+
 };
