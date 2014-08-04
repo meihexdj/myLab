@@ -1,6 +1,10 @@
 <%- partial('../sidebar') %>
 
 <script type="text/javascript">
+    $(function(){
+        $("#g2012 a").click();
+    })
+
 </script>
 
 <div id="content">
@@ -13,28 +17,20 @@
         </div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" id="gradeTab" >
-            <li class="active"><a href="#teacher" role="tab" data-toggle="tab">教师</a></li>
+            <li><a href="#teacher" role="tab" data-toggle="tab">教师风采</a></li>
             <li><a href="#2008" role="tab" data-toggle="tab">2008级</a></li>
             <li><a href="#2009" role="tab" data-toggle="tab">2009级</a></li>
             <li><a href="#2010" role="tab" data-toggle="tab">2010级</a></li>
+            <li><a href="#2011" role="tab" data-toggle="tab">2011级</a></li>
+            <li id="g2012"><a href="#2012" role="tab" data-toggle="tab">2012级</a></li>
+            <li><a href="#2013" role="tab" data-toggle="tab">2013级</a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane fade in active" id="teacher">
             </div>
             <div class="tab-pane fade"  id="2008">
-                <ul class="nav nav-pills">
-                    <li >
-                        <a data-toggle="modal" data-target="#xu" href="xu.html">
-                        <img src="/public/images/0.jpg">
-                        <div class="name">许会元</div>
-                        </a>
-                    </li>
-                    <li ><a href="javascript:void(0)"><img src="/public/images/1.jpg"></a></li>
-                    <li ><a href="javascript:void(0)"><img src="/public/images/2.jpg"></a></li>
-                    <li ><a href="javascript:void(0)"><img src="/public/images/3.jpg"></a></li>
-                    <li ><a href="javascript:void(0)"><img src="/public/images/4.jpg"></a></li>
-                </ul>
+
             </div>
             <div class="tab-pane fade"  id="2009">
 
@@ -42,6 +38,77 @@
             <div class="tab-pane fade"  id="2010">
 
             </div>
+            <div class="tab-pane fade"  id="2011">
+
+            </div>
+            <div class="tab-pane fade"  id="2012">
+                <ul class="nav nav-pills">
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png" />
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                    <li >
+                        <a data-toggle="modal" data-target="#xu" href="xu.html">
+                            <img src="/public/images/xu.png">
+                            <div class="name">许会元</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane fade"  id="2013">
+
+            </div>
+
         </div>
 
     </div>
@@ -54,7 +121,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row" style="text-align: center;">
-                        <img src="/public/images/4.jpg">
+                        <img src="/public/images/xu1.jpg">
                     </div>
                     <div class="row">
                         <div class="col-sm-3" style="text-align: right;">姓名：</div>
@@ -64,15 +131,28 @@
                         <div class="col-sm-3" style="text-align: right;">性别：</div>
                         <div class="col-sm-9">男</div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-3" style="text-align: right;">工作：</div>
-                        <div class="col-sm-9"></div>
-                    </div>
-
                     <div class="row">
                         <div class="col-sm-3" style="text-align: right;">联系电话：</div>
                         <div class="col-sm-9">15958198067</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" style="text-align: right;">目前工作：</div>
+                        <div class="col-sm-9">在读</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" style="text-align: right;">个人主页：</div>
+                        <div class="col-sm-9">…………</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" style="text-align: right;">兴趣爱好：</div>
+                        <div class="col-sm-9">篮球，乒乓球，小说，动漫，游戏</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3" style="text-align: right;">座右铭：</div>
+                        <div class="col-sm-9">苟有恒，何必三更眠五更起</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align: center;"><a href="/user/xuhuiyuan">跳转到他在本系统中的主页</a></div>
                     </div>
 
 
