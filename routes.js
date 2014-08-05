@@ -35,6 +35,7 @@ module.exports = function (app) {
   // home page
   app.get('/',site.index);
   app.get('/home',site.index);
+  app.get('/ng-todo',site.todo);
   app.get('/outTopic', site.outTopic);
 
   app.get('/member',member.index);

@@ -192,7 +192,8 @@ exports.outTopic = function (req, res, next) {
           return tags;
       }));
   }
-
-    // 计算最热标签
-
 };
+exports.todo=function(req,res,next){
+    res.render("static/ng-todo");
+}
+

@@ -22,8 +22,8 @@ var config = {
   site_icon: '', // 默认没有 favicon, 这里填写网址
   site_navs: [
     // [ path, title, [target=''] ]
-    [ '/about', '关于' ],
     ['/outTopic','我们的话题'],
+      [ '/about', '关于' ],
   ],
   site_static_host: '', // 静态文件存储域名
   mini_assets: false, // 静态文件的合并压缩，详见视图中的Loader
