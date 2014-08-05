@@ -1,64 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Todo</title>
+    <link rel="stylesheet" href="/public/stylesheets/ng-tod/base.css">
+    </head>
 
 
-<link rel="stylesheet" href="/public/stylesheets/ng-tod/base.css">
-<div id="content">
-    <div class="panel">
-        <div class="header">
-            todo
-        </div>
 
-        <div class="inner no-padding">
-            <section id="todoapp" ng-controller="MainCtrl">
-                <header id="header">
-                    <h1 ng-bind="title"></h1>
-                    <input id="new-todo" ng-model="newTodo" ng-keypress="createOnEnter($event)" placeholder="What needs to be done?" autofocus>
-                </header>
-                <section id="main">
-                    <input id="toggle-all" type="checkbox" ng-click="toggleAll($event)">
-                    <label for="toggle-all">Mark all as complete</label>
-                    <ul id="todo-list" ng-hide="hidden">
-                        <li ng-repeat="todo in getTodos() track by $index" ng-class='{completed: todo.completed, editing: todo.edit}'>
-                            <div class="view">
-                                <input class="toggle" type="checkbox" ng-model="todo.completed">
-                                <label ng-dblclick="edit(todo, $event)" ng-bind="todo.title"></label>
-                                <button class="destroy" ng-click="todoService.delTodo($index)"></button>
-                            </div>
-                            <input ng-blur="close(todo)" class="edit" ng-model="todo.title">
-                        <li>
-                    </ul>
-                </section>
-                <footer id="footer">
-                    <span id="todo-count"><strong ng-bind="remaining"></strong> <span ng-bind-template="{{remaining < 1 ? 'item' : 'items'}} left"></span></span>
-                    <ul id="filters">
-                        <li>
-                            <a ng-class="{selected: selected('')}" href="#/" ng-click="filter('')">All</a>
-                        </li>
-                        <li>
-                            <a ng-class="{selected: selected(false)}" href="#/" ng-click="filter(false)">Active</a>
-                        </li>
-                        <li>
-                            <a ng-class="{selected: selected(true)}" href="#/" ng-click="filter(true)">Completed</a>
-                        </li>
-                    </ul>
-                    <button ng-show="completed" id="clear-completed" ng-click="todoService.clearCompleted()" ng-bind-template="Clear completed ({{completed}})"></button>
-                </footer>
-            </section>
-        </div>
+<section id="todoapp" ng-controller="MainCtrl">
+    <header id="header">
+        <h1 ng-bind="title"></h1>
+        <input id="new-todo" ng-model="newTodo" ng-keypress="createOnEnter($event)" placeholder="What needs to be done?" autofocus>
+    </header>
+    <section id="main">
+        <input id="toggle-all" type="checkbox" ng-click="toggleAll($event)">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul id="todo-list" ng-hide="hidden">
+            <li ng-repeat="todo in getTodos() track by $index" ng-class='{completed: todo.completed, editing: todo.edit}'>
+                <div class="view">
+                    <input class="toggle" type="checkbox" ng-model="todo.completed">
+                    <label ng-dblclick="edit(todo, $event)" ng-bind="todo.title"></label>
+                    <button class="destroy" ng-click="todoService.delTodo($index)"></button>
+                </div>
+                <input ng-blur="close(todo)" class="edit" ng-model="todo.title">
+            <li>
+        </ul>
+    </section>
+    <footer id="footer">
+        <span id="todo-count"><strong ng-bind="remaining"></strong> <span ng-bind-template="{{remaining < 1 ? 'item' : 'items'}} left"></span></span>
+        <ul id="filters">
+            <li>
+                <a ng-class="{selected: selected('')}" href="#/" ng-click="filter('')">All</a>
+            </li>
+            <li>
+                <a ng-class="{selected: selected(false)}" href="#/" ng-click="filter(false)">Active</a>
+            </li>
+            <li>
+                <a ng-class="{selected: selected(true)}" href="#/" ng-click="filter(true)">Completed</a>
+            </li>
+        </ul>
+        <button ng-show="completed" id="clear-completed" ng-click="todoService.clearCompleted()" ng-bind-template="Clear completed ({{completed}})"></button>
+    </footer>
+</section>
+<footer id="info">
 
-    </div>
-</div>
-</div>
+    <p>这是一个管理待做事项的小应用，可以创建自己要做的事情</p>
+    <p>双击可以编辑一个todo</p>
+    <p>是seajs的example之一，感觉很不错，加到了本系统中</p>
+    <p>实验室的同学们可以把每天要做的事情写在上面，然后完成一个打上一个勾</p>
+    <p>注意，因为是短时少量存储应用，所以使用的是浏览器端的存储，更换浏览器，或者清空浏览器应用数据，数据就会消失。</p>
 
+</footer>
 <script src="/public/libs/sea-debug.js"></script>
 <script>
 
   // Set configuration
   seajs.config({
-    base: "/public/libs",
+    base: "/public/libs/",
     alias: {
       "$": "jquery-1.11.0.js",
-      "store": "store/1.3.7/store",
-      "angularjs": "angularjs/1.1.5/angular.js"
+      "store-debug": "store/1.3.7/store-debug",
+      "angularjs-debug": "angularjs/1.1.5/angular-debug.js"
     }
   });
 
@@ -70,7 +74,7 @@
   }
   // For production
   else {
-    seajs.use("ng-todo/main", function(main) {
+    seajs.use("ng-todo/main-debug", function(main) {
       main.init()
     });
   }

@@ -194,6 +194,6 @@ exports.outTopic = function (req, res, next) {
   }
 };
 exports.todo=function(req,res,next){
-    res.render("static/ng-todo");
+    res.sendfile("views/static/ng-todo.html");
 }
 

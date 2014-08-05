@@ -1,4 +1,4 @@
-define("examples/ng-todo/1.0.0/main-debug", [ "angularjs-debug", "./common-debug", "./service-debug", "store-debug" ], function(require) {
+define("ng-todo/main-debug", [ "angularjs-debug", "./common-debug", "./service-debug", "store-debug" ], function(require) {
     var angular = require("angularjs-debug");
     var common = require("./common-debug");
     var todoService = require("./service-debug");
@@ -70,7 +70,7 @@ define("examples/ng-todo/1.0.0/main-debug", [ "angularjs-debug", "./common-debug
     };
 });
 
-define("examples/ng-todo/1.0.0/common-debug", [], {
+define("ng-todo/common-debug", [], {
     // Which filter are we using?
     TodoFilter: "",
     // empty, active, completed
@@ -78,7 +78,7 @@ define("examples/ng-todo/1.0.0/common-debug", [], {
     ENTER_KEY: 13
 });
 
-define("examples/ng-todo/1.0.0/service-debug", [ "store-debug" ], function(require, exports, module) {
+define("ng-todo/service-debug", [ "store-debug" ], function(require, exports, module) {
     var store = require("store-debug");
     module.exports = function() {
         var todos = [];

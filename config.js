@@ -7,8 +7,8 @@ var pkg = require('./package.json');
 
 var config = {
   debug: true,
-  name: 'Node Club',
-  description: 'Node Club 是用 Node.js 开发的社区软件',
+  name: 'myLab',
+  description: '本系统是基于nodeclub开发的类社区应用',
   version: pkg.version,
 
   // site settings
@@ -24,6 +24,7 @@ var config = {
     // [ path, title, [target=''] ]
     ['/outTopic','我们的话题'],
       [ '/about', '关于' ],
+      ['/ng-todo','todo','target="_blank"']
   ],
   site_static_host: '', // 静态文件存储域名
   mini_assets: false, // 静态文件的合并压缩，详见视图中的Loader

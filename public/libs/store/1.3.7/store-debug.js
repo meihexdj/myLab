@@ -1,4 +1,4 @@
-define("gallery/store/1.3.7/store-debug", [], function(require, exports, module) {
+define("store/1.3.7/store-debug", [], function(require, exports, module) {
     (function() {
         var store = {}, win = window, doc = win.document, localStorageName = "localStorage", namespace = "__storejs__", storage;
         store.disabled = false;
