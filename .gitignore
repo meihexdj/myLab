@@ -1,6 +1,6 @@
 .idea
 .cov
-node_modules
+
 .naeindex
 public/user_data
 coverage.html
